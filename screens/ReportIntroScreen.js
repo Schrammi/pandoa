@@ -20,8 +20,8 @@ export default function ReportIntroScreen({ navigation }) {
           None of your positions will be send to the internet until you report a
           case.
         </Text>
-        <Button primary onPress={() => navigation.push("ReportDetail")}>
-          <Text>Report infection</Text>
+        <Button primary onPress={() => navigation.push("ReportStatus")}>
+          <Text>Status hinzufügen</Text>
         </Button>
       </View>
     </View>
@@ -37,7 +37,8 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    paddingTop: 15,
   },
   introWrapper: {
     flex: 1,
@@ -61,8 +62,5 @@ const styles = StyleSheet.create({
     marginLeft: 40,
     marginRight: 40,
     marginBottom: 20
-  },
-  contentContainer: {
-    paddingTop: 15
   }
 });

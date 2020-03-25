@@ -40,7 +40,7 @@ function BottomTabNavigator({ detail, navigation, route }) {
         name="Report"
         component={ReportScreen}
         options={{
-          title: "Report case",
+          title: "Status",
           tabBarIcon: ({ focused }) => (
             <TabBarIcon focused={focused} name="md-umbrella" />
           )
