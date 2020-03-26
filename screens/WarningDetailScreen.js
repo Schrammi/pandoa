@@ -3,7 +3,7 @@ import { Image, StyleSheet, View } from "react-native";
 import { Button, Text } from "native-base";
 import { Ionicons } from "@expo/vector-icons";
 import { RectButton, ScrollView } from "react-native-gesture-handler";
-import VirusImage from "../assets/images/virus-image-01";
+import VirusImage from "../assets/images/virus-image-01.svg";
 import commonColor from "../native-base-theme/variables/commonColor";
 //import VirusImage from "../assets/images/infoSimple";
 

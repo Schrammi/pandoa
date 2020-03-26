@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Body, Button, Right, List, ListItem, Text } from "native-base";
 import { setDetail } from "../../actions";
 import { getAllWarnings } from "../../selectors";
-import SoapImage from "../../assets/images/soap";
+import SoapImage from "../../assets/images/soap.svg";
 import commonColor from "../../native-base-theme/variables/commonColor";
 
 const options = {
