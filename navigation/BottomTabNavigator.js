@@ -6,7 +6,6 @@ import ReportScreen from "../screens/ReportScreen";
 import MapScreen from "../screens/MapScreen";
 import { getDetail } from "../selectors";
 import { connect } from "react-redux";
-import { useRoute } from "@react-navigation/native";
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = "Warnings";
@@ -21,9 +20,6 @@ function BottomTabNavigator({ detail, navigation, route }) {
     headerTitle: getHeaderTitle(route)
   });
 
-  const navigationParams = useRoute();
-  //console.log(route, route.state.routes[1].state.index);
-  // route.state.index === 2 &&
   return (
     <BottomTab.Navigator
       initialRouteName={INITIAL_ROUTE_NAME}
@@ -44,11 +40,7 @@ function BottomTabNavigator({ detail, navigation, route }) {
         name="Report"
         component={ReportScreen}
         options={{
-          title: "Report case",
-          tabBarVisible:
-            route.state &&
-            route.state.routes[1].state &&
-            route.state.routes[1].state.index === 0,
+          title: "Status",
           tabBarIcon: ({ focused }) => (
             <TabBarIcon focused={focused} name="md-umbrella" />
           )
