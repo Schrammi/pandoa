@@ -45,38 +45,38 @@ function HomeScreen(props) {
           </Text>
           <Button
             title={`Start tracking current: (${positionsCount})`}
-            onPress={() => setTrackingStatus(startLocationTracking)}
+            onPress={async () => {
+              const result = await startLocationTracking();
+              setTrackingStatus(result)
+            }}
           />
-    
           <Button
             title={`Stop tracking`}
             onPress={async () => {
-              await stopLocationTracking();
-              setTrackingStatus(false);
+              const result = await stopLocationTracking();
+        
+              setTrackingStatus(result);
             }}
           />
-    
           <Button
             title={`Get data from server current: ${tracksCount}`}
-            onPress={e => downloadInfectionsTrigger()}
+            onPress={() => downloadInfectionsTrigger()}
           />
           <Text>Download data in the area you were in from the server</Text>
           <Button
             title={`Generate warnings: ${filteredWarningsCount}/${warningsCount}`}
-            onPress={e => generateWarningsTrigger({ positions, tracks })}
+            onPress={() => generateWarningsTrigger({ positions, tracks })}
           />
           <Text>Generates the warnings locally</Text>
     
           <Button
             title={`Generate fake infection`}
-            onPress={e =>
-              generateFakeInfectionsTrigger(positions[positions.length - 1])
-            }
+            onPress={() => generateFakeInfectionsTrigger(positions[positions.length - 1])}
           />
           <Text>
             Generates some fake points around you last position (local)
           </Text>
-          <Button title="reset" onPress={e => clearAllTrigger()} />
+          <Button title="reset" onPress={() => clearAllTrigger()} />
         </View>
       </ScrollView>
     </View>
