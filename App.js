@@ -8,6 +8,10 @@ import { Ionicons } from "@expo/vector-icons";
 import * as Location from "expo-location";
 import * as TaskManager from "expo-task-manager";
 import * as Permissions from "expo-permissions";
+// Translations
+// import * as RNLocalize from "react-native-localize";
+import i18n from "i18n-js";
+import memoize from "lodash.memoize"; // Use for caching/memoize for better performance
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { NavigationContainer } from "@react-navigation/native";
@@ -24,11 +28,41 @@ import { LOCATION_TRACKING } from "./constants/Tracking";
 
 const Stack = createStackNavigator();
 
+const translationGetters = {
+  // lazy requires (metro bundler does not support symlinks)
+  de: () => require("./translations/de.json"),
+  en: () => require("./translations/en.json")
+};
+
+export const translate = memoize(
+  (key, config) => i18n.t(key, config),
+  (key, config) => (config ? key + JSON.stringify(config) : key)
+);
+
+const setI18nConfig = () => {
+  // // fallback if no available language fits
+  // const fallback = { languageTag: "en", isRTL: false };
+  //
+  // const { languageTag, isRTL } =
+  // RNLocalize.findBestAvailableLanguage(Object.keys(translationGetters)) ||
+  // fallback;
+  //
+  // // clear translation cache
+  // translate.cache.clear();
+  // // update layout direction
+  // I18nManager.forceRTL(isRTL);
+  // // set i18n-js config
+  // i18n.translations = { [languageTag]: translationGetters[languageTag]() };
+  // i18n.locale = languageTag;
+};
+
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
   const [initialNavigationState, setInitialNavigationState] = React.useState();
   const containerRef = React.useRef();
   const { getInitialState } = useLinking(containerRef);
+  
+  setI18nConfig(); // set initial config
   
   // Load any resources or data that we need prior to rendering the app
   React.useEffect(() => {
@@ -37,7 +71,7 @@ export default function App(props) {
         SplashScreen.preventAutoHide();
         // Load our initial navigation state
         setInitialNavigationState(await getInitialState());
-  
+        
         // Load fonts
         await Font.loadAsync({
           ...Ionicons.font,
@@ -53,7 +87,7 @@ export default function App(props) {
         SplashScreen.hide();
       }
     }
-  
+    
     loadResourcesAndDataAsync();
   }, []);
   
