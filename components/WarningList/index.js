@@ -23,20 +23,19 @@ function WarningList({ setDetailTrigger, filteredWarnings }) {
   }
   return (
     <List>
-      {filteredWarnings.map((e, i) => (
+      {filteredWarnings.map((item, i) => (
         <ListItem key={i}>
           <Body>
-            <Text>{e.title}</Text>
-            <Text numberOfLines={2} style={styles.date}>
-              {new Date(e.position.time).toLocaleDateString("de-DE", options)}
-            </Text>
+            <Text>{item.title}</Text>
+      
             <Text note numberOfLines={2}>
-              {e.matches && e.matches.length >= 1
-                ? `Contact for ${Math.round(e.duration / 1000 / 60)} min`
-                : "no contact found"}
+              {item.matches && item.matches.length >= 1 ? contactLengthText(item.duration) : "no contact found"}
             </Text>
           </Body>
           <Right>
+            <Text numberOfLines={2} style={styles.date}>
+              {DayJS(item.position.time).fromNow(true)}
+            </Text>
             <Button transparent onPress={() => setDetailTrigger(i)}>
               <Text>Details</Text>
             </Button>
@@ -80,7 +79,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    warnings: getAllWarnings(state)
+    warnings: getAllWarnings(state),
+    filteredWarnings: getAllFilteredWarnings(state)
   };
 };
 
