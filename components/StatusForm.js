@@ -1,21 +1,14 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Alert, Linking } from "react-native";
-import { useForm, Controller } from "react-hook-form";
+import { Alert, Linking, StyleSheet, View } from "react-native";
+import { useForm } from "react-hook-form";
 import { connect } from "react-redux";
 
-import { clearAll, reportCase } from "../actions";
-import { getAllPositions, getAllTracks } from "../selectors";
+import { reportCase } from "../actions";
+import { getAllPositions } from "../selectors";
 import Colors from "../constants/Colors";
 import ChariteImage from "../assets/images/charite.svg";
 
-import realm from 'realm';
-
-import {
-  Button,
-  Text,
-    Icon,
-    Switch,
-} from "native-base";
+import { Button, Icon, Switch, Text, } from "native-base";
 
 function ReportForm({ reportCaseTrigger, positions }) {
   const { control, handleSubmit, errors } = useForm();
@@ -24,12 +17,12 @@ function ReportForm({ reportCaseTrigger, positions }) {
   const [upload, setUpload] = useState(false);
   const saveData = () => {
     Alert.alert("Data submitted");
-
-  }
+    
+  };
   const updateTemp = (val) => {
-    const newTemp = parseFloat(temp)+val;
+    const newTemp = parseFloat(temp) + val;
     setTemp(newTemp.toFixed(1))
-  }
+  };
 
 
 
@@ -89,11 +82,12 @@ function ReportForm({ reportCaseTrigger, positions }) {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-              <Text  style={{ fontSize: 10, color: 'blue'}}
-                     onPress={() => Linking.openURL('https://covapp.charite.de/')}>
-                alternativ spezifischen Fragenkatalog beantworten in Zusammenarbeit mit der Charité
-              </Text>
-            <ChariteImage style={styles.chariteLogo}/>
+          <Text style={{ fontSize: 10, color: 'blue' }}
+                onPress={() => Linking.openURL('https://covapp.charite.de/')}
+          >
+            alternativ spezifischen Fragenkatalog beantworten in Zusammenarbeit mit der Charité
+          </Text>
+          <ChariteImage style={styles.chariteLogo} />
           </View>
 
     </View>

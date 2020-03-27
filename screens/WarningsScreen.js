@@ -27,10 +27,9 @@ function HomeScreen(props) {
     tracks,
     positionsCount,
     tracksCount,
-    warningsCount,
-    navigation
+    warningsCount
   } = props;
-
+  
   return (
     <View style={styles.container}>
       <ScrollView
@@ -39,7 +38,7 @@ function HomeScreen(props) {
       >
         {/*<WarningList navigation={navigation} />*/}
         {/*<WarningGenerator navigation={navigation} />*/}
-
+  
         <View style={styles.getStartedContainer}>
           <Text>
             {trackingStatus ? "Tracking active" : "Tracking disabled"}
@@ -48,15 +47,15 @@ function HomeScreen(props) {
             title={`Start tracking current: (${positionsCount})`}
             onPress={() => setTrackingStatus(startLocationTracking)}
           />
-
+    
           <Button
             title={`Stop tracking`}
-            onPress={() => {
-              stopLocationTracking();
+            onPress={async () => {
+              await stopLocationTracking();
               setTrackingStatus(false);
             }}
           />
-
+    
           <Button
             title={`Get data from server current: ${tracksCount}`}
             onPress={e => downloadInfectionsTrigger()}
@@ -67,7 +66,7 @@ function HomeScreen(props) {
             onPress={e => generateWarningsTrigger({ positions, tracks })}
           />
           <Text>Generates the warnings locally</Text>
-
+    
           <Button
             title={`Generate fake infection`}
             onPress={e =>

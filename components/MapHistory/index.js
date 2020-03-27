@@ -1,9 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import MapView, { Circle, Marker, Polyline } from "react-native-maps";
+import { Circle, Marker, Polyline } from "react-native-maps";
 import { StyleSheet, View } from "react-native";
 import { getAllPositions, getAllTracks, getAllWarnings } from "../../selectors";
-import Colors from "../../constants/Colors";
 import latLngDistance from "../../helpers/latLngDistance";
 import contactLengthText from "../../helpers/contactLengthText";
 import commonColor from "../../native-base-theme/variables/commonColor";
@@ -40,11 +39,11 @@ const MapHistory = ({ positions, setDetailTrigger, warnings }) => {
       longitude: point.lng ? point.lng : 0
     };
   });
-
+  
   const connectedPoints = warnings;
-
-  var concatPoints = [];
-  connectedPoints.forEach((position, i) => {
+  
+  const concatPoints = [];
+  connectedPoints.forEach((position) => {
     const foundSimilar = concatPoints.findIndex(existingPoint => {
       const diff = diffCalc(position, existingPoint);
       if (diff.distance <= 100 && diff.timeDifference <= 1000 * 60 * 60 * 2) {
