@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import { Linking, StyleSheet, View } from "react-native";
 import { connect } from "react-redux";
 import { Text } from "react-native-elements";
-import { Button, CheckBox, Form, Icon, Switch } from "native-base";
-import Colors from "../constants/Colors";
+import { Button, Form, Icon, Switch } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
+import Colors from "../constants/Colors";
+import ChariteImage from "../assets/images/charite.svg";
 
 class ReportCurrentStatusScreen extends Component {
   constructor(props) {
@@ -34,13 +35,12 @@ class ReportCurrentStatusScreen extends Component {
             </Text>
             
             <Text>Körpertemperatur</Text>
-            <CheckBox />
             <View style={{ flex: 1, flexDirection: 'row' }}>
               <View style={{ flex: 1, height: 50 }}>
                 {<Button transparent onPress={() => this.setState((state) => {
                   return { temperature: state.temperature - 0.1 }
                 })}>
-                  <Icon type="AntDesign" name='minuscircle' style={{ color: '#007AFF' }} />
+                  <Icon type="AntDesign" name='minuscircle' style={{ color: Colors.tintColor }} />
                 </Button>}
               </View>
               <View style={{ flex: 3, height: 50 }}>
@@ -53,7 +53,7 @@ class ReportCurrentStatusScreen extends Component {
                 <Button transparent onPress={() => this.setState((state) => {
                   return { temperature: state.temperature + 0.1 }
                 })}>
-                  <Icon type="AntDesign" name='pluscircle' style={{ color: '#007AFF' }} />
+                  <Icon type="AntDesign" name='pluscircle' style={{ color: Colors.tintColor }} />
                 </Button>
               </View>
             </View>
@@ -82,12 +82,11 @@ class ReportCurrentStatusScreen extends Component {
             <View style={{ flex: 1, flexDirection: 'row' }}>
               <View style={{ flex: 5, height: 50 }}>
                 <Button
-                  style={{ backgroundColor: '#007AFF', borderRadius: 15 }}
-                  // onPress={handleSubmit(onSubmit)}
+                  primary
+                  style={{ backgroundColor: Colors.tintColor }}
+                  // onPress={() => navigation.push("ReportStatus")}
                 >
-                  <Text style={{ width: '100%', textAlign: 'center', color: '#fff' }}>
-                    Speichern
-                  </Text>
+                  <Text style={{ color: 'white' }}>Speichern</Text>
                 </Button>
               </View>
             </View>
@@ -102,9 +101,8 @@ class ReportCurrentStatusScreen extends Component {
               >
                 Alternativ spezifischen Fragenkatalog beantworten in Zusammenarbeit mit der Charité
               </Text>
-              {/*<ChariteImage style={styles.chariteLogo} />*/}
+              <ChariteImage style={{ width: 150, height: 150 }} />
             </View>
-          
           </Form>
         </View>
       </ScrollView>
@@ -138,10 +136,6 @@ const styles = StyleSheet.create({
     borderColor: "#CCC",
     backgroundColor: "#fff",
     marginTop: 10
-  },
-  chariteLogo: {
-    width: 150,
-    height: 150
   },
   container: {
     flex: 1,
