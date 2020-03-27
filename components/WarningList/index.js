@@ -1,25 +1,15 @@
 import React from "react";
+import DayJS from "../../libs/dayjs";
 import { StyleSheet, View } from "react-native";
 import { connect } from "react-redux";
-import { Body, Button, Right, List, ListItem, Text } from "native-base";
+import { Body, Button, List, ListItem, Right, Text } from "native-base";
 import { setDetail } from "../../actions";
-import { getAllWarnings } from "../../selectors";
+import { getAllFilteredWarnings, getAllWarnings } from "../../selectors";
 import SoapImage from "../../assets/images/soap.svg";
 import commonColor from "../../native-base-theme/variables/commonColor";
+import contactLengthText from "../../helpers/contactLengthText";
 
-const options = {
-  weekday: "short",
-  year: "numeric",
-  month: "numeric",
-  day: "numeric",
-  hour: "numeric",
-  minute: "numeric"
-};
-
-function WarningList({ navigation, setDetailTrigger, warnings }) {
-  const filteredWarnings = warnings.filter(
-    e => e.matches && e.matches.length >= 1
-  );
+function WarningList({ setDetailTrigger, filteredWarnings }) {
   if (filteredWarnings.length === 0) {
     return (
       <View style={styles.introWrapper}>
