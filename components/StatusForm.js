@@ -23,80 +23,82 @@ function ReportForm({ reportCaseTrigger, positions }) {
     const newTemp = parseFloat(temp) + val;
     setTemp(newTemp.toFixed(1))
   };
-
-
-
+  
+  
   return (
     <View style={styles.wrapper}>
-
-          <Text style={{marginBottom:20}}>
-            Trage hier deinen aktuellen Gesundheitsstatus ein
-          </Text>
-
-          <Text>Körpertemperatur</Text>
-
-          <View style={{flex: 1, flexDirection: 'row'}}>
-            <View style={{flex: 1, height: 50}}>
-              <Button transparent onPress={() => updateTemp(-0.1)}>
-                <Icon type="AntDesign" name='minuscircle' style={{color: '#007AFF'}} />
-              </Button>
-            </View>
-            <View style={{flex: 3, height: 50}} >
-              <Text style={{textAlign: 'center', fontSize: 30, fontWeight: 'bold'}}>{temp} °C</Text>
-            </View>
-            <View style={{flex: 1, height: 50}}>
-                <Button transparent onPress={() => updateTemp(0.1)}>
-                <Icon type="AntDesign" name='pluscircle' style={{color: '#007AFF'}} />
-              </Button>
-            </View>
-          </View>
-
-          <View style={{flex: 1, flexDirection: 'row'}}>
-            <View style={{flex: 4, height: 50}} >
-              <Text >Bist du in Quarantäne?</Text>
-            </View>
-            <View style={{flex: 1, height: 50}}>
-              <Switch value={quarantine} thumbColor={quarantine ? "#007AFF" : null} trackColor={{true: "#007AFFAA", false: null}} onValueChange={() => setQuarantine(!quarantine)} style={{ transform: [{ scaleX: 1.5 }, { scaleY: 1.5 }] }} />
-            </View>
-          </View>
-
-          <View style={{flex: 1, flexDirection: 'row'}}>
-            <View style={{flex: 4, height: 50}} >
-              <Text>Datenübermittlung</Text>
-              <Text style={{fontSize: 12}}>Lokale Speicherung auf deinem iPhone</Text>
-            </View>
-            <View style={{flex: 1, height: 50}}>
-              <Switch value={upload} onValueChange={() => setUpload(!upload)} style={{ transform: [{ scaleX: 1.5 }, { scaleY: 1.5 }] }} />
-            </View>
-          </View>
-
-          <View style={{flex: 1, flexDirection: 'row'}}>
-            <View style={{flex: 5, height: 50}} >
-              <Button  style={{backgroundColor: '#007AFF', borderRadius: 15}} onPress={saveData}>
-                <Text style={{textAlign: 'center'}}>Speichern</Text>
-              </Button>
-            </View>
-          </View>
-
-        <View style={{
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
-          <Text style={{ fontSize: 10, color: 'blue' }}
-                onPress={() => Linking.openURL('https://covapp.charite.de/')}
-          >
-            alternativ spezifischen Fragenkatalog beantworten in Zusammenarbeit mit der Charité
-          </Text>
-          <ChariteImage style={styles.chariteLogo} />
-          </View>
-
+      
+      <Text style={{ marginBottom: 20 }}>
+        Trage hier deinen aktuellen Gesundheitsstatus ein
+      </Text>
+      
+      <Text>Körpertemperatur</Text>
+      
+      <View style={{ flex: 1, flexDirection: 'row' }}>
+        <View style={{ flex: 1, height: 50 }}>
+          <Button transparent onPress={() => updateTemp(-0.1)}>
+            <Icon type="AntDesign" name='minuscircle' style={{ color: Colors.tintColor }} />
+          </Button>
+        </View>
+        <View style={{ flex: 3, height: 50 }}>
+          <Text style={{ textAlign: 'center', fontSize: 30, fontWeight: 'bold' }}>{temp} °C</Text>
+        </View>
+        <View style={{ flex: 1, height: 50 }}>
+          <Button transparent onPress={() => updateTemp(0.1)}>
+            <Icon type="AntDesign" name='pluscircle' style={{ color: '#007AFF' }} />
+          </Button>
+        </View>
+      </View>
+      
+      <View style={{ flex: 1, flexDirection: 'row' }}>
+        <View style={{ flex: 4, height: 50 }}>
+          <Text>Bist du in Quarantäne?</Text>
+        </View>
+        <View style={{ flex: 1, height: 50 }}>
+          <Switch value={quarantine} thumbColor={quarantine ? "#007AFF" : null}
+                  trackColor={{ true: "#007AFFAA", false: null }} onValueChange={() => setQuarantine(!quarantine)}
+                  style={{ transform: [{ scaleX: 1.5 }, { scaleY: 1.5 }] }} />
+        </View>
+      </View>
+      
+      <View style={{ flex: 1, flexDirection: 'row' }}>
+        <View style={{ flex: 4, height: 50 }}>
+          <Text>Datenübermittlung</Text>
+          <Text style={{ fontSize: 12 }}>Lokale Speicherung auf deinem iPhone</Text>
+        </View>
+        <View style={{ flex: 1, height: 50 }}>
+          <Switch value={upload} onValueChange={() => setUpload(!upload)}
+                  style={{ transform: [{ scaleX: 1.5 }, { scaleY: 1.5 }] }} />
+        </View>
+      </View>
+      
+      <View style={{ flex: 1, flexDirection: 'row' }}>
+        <View style={{ flex: 5, height: 50 }}>
+          <Button style={{ backgroundColor: '#007AFF', borderRadius: 15 }} onPress={saveData}>
+            <Text style={{ textAlign: 'center' }}>Speichern</Text>
+          </Button>
+        </View>
+      </View>
+      
+      <View style={{
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
+        <Text style={{ fontSize: 10, color: 'blue' }}
+              onPress={() => Linking.openURL('https://covapp.charite.de/')}
+        >
+          alternativ spezifischen Fragenkatalog beantworten in Zusammenarbeit mit der Charité
+        </Text>
+        <ChariteImage style={styles.chariteLogo} />
+      </View>
+    
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   wrapper: {
-    flex:1,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 10,
