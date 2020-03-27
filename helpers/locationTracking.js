@@ -9,9 +9,12 @@ export const startLocationTracking = async () => {
   });
   
   const hasStarted = await Location.hasStartedLocationUpdatesAsync(LOCATION_TRACKING);
-  console.log("tracking started?", hasStarted);
+  console.log("TRACKING: started -", hasStarted);
+  return hasStarted;
 };
 
 export const stopLocationTracking = async () => {
   await Location.stopLocationUpdatesAsync(LOCATION_TRACKING);
+  console.log("TRACKING: stopped -", true);
+  return true;
 };

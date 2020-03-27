@@ -1,11 +1,8 @@
 import * as React from "react";
-import { Image, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Button, Text } from "native-base";
-import { Ionicons } from "@expo/vector-icons";
-import { RectButton, ScrollView } from "react-native-gesture-handler";
 import VirusImage from "../assets/images/virus-image-01.svg";
 import commonColor from "../native-base-theme/variables/commonColor";
-//import VirusImage from "../assets/images/infoSimple";
 
 export default function WarningDetailScreen({ navigation }) {
   return (
@@ -17,8 +14,7 @@ export default function WarningDetailScreen({ navigation }) {
         <VirusImage width={220} style={styles.image} />
         <Text style={styles.title}>No case reported</Text>
         <Text style={styles.subTitle}>
-          None of your positions will be send to the internet until you report a
-          case.
+          None of your positions will be send to the internet until you report a case.
         </Text>
         <Button primary onPress={() => navigation.push("ReportDetail")}>
           <Text>Report infection</Text>
@@ -36,6 +32,7 @@ const styles = StyleSheet.create({
     backgroundColor: commonColor.containerDarkBgColor
   },
   contentContainer: {
+    paddingTop: 15,
     justifyContent: "center",
     alignItems: "center"
   },
@@ -61,8 +58,5 @@ const styles = StyleSheet.create({
     marginLeft: 40,
     marginRight: 40,
     marginBottom: 20
-  },
-  contentContainer: {
-    paddingTop: 15
   }
 });

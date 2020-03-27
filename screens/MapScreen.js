@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Dimensions } from "react-native";
+import { Dimensions, StyleSheet, View } from "react-native";
 import { connect } from "react-redux";
 import Animated from "react-native-reanimated";
 import MapHistory from "../components/MapHistory";
@@ -73,6 +73,7 @@ class MapScreen extends Component {
     }
     let location = await Location.getCurrentPositionAsync({});
     this.setState({ locationResult: JSON.stringify(location), location });
+    console.log('Current position: ' + JSON.stringify(location));
   };
   
   render() {
