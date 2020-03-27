@@ -12,17 +12,12 @@ Slack: #pandoa_coronaviruscarriertracker
 
 Would be great if you could help!
 
-<<<<<<< HEAD
-- **Frontend** (react native (expo)) [Robert Gühne](https://github.com/Utzel-Butzel), [KaiHawaii](https://github.com/Kaipirinha)
-- **Backend** (currently we use node.js with mongodb) [Daniel Böber](https://github.com/smarthomeagentur), [KaiHawaii](https://github.com/Kaipirinha)
-=======
-- **Backend** (currently we use node.js with mongodb) [Daniel Böber](https://github.com/smarthomeagentur), [KaiHawaii](https://github.com/Kaipirinha), [Tim](https://github.com/pr1zm)
-- **Frontend** (react native (expo)) [Robert Gühne](https://github.com/Utzel-Butzel), [KaiHawaii](https://github.com/Kaipirinha
->>>>>>> e9f7b89f533031107e3fd31cb66807640d0d2876
-- **Testing** (giving feedback on bugs, testing in real life environments) Valentin - Medizin, Machine Learning Modelle, Epidemiologie
-- **Evaluation** (machine learning and data analytics) [Sören](https://github.com/soerili)
-- **Communications & organisation** [Chris Walter], [Hans - rooom.com] (https://github.com/Hans-rooom) 
-- **Media** (creating communication material, presentations, videos, etc.) Soprathna
+- **Frontend** (react native (expo)) -- [Robert Gühne](https://github.com/Utzel-Butzel), [KaiHawaii](https://github.com/Kaipirinha), [Sebastian S. (rooom AG)](https://github.com/Schrammi), [Sebastian G. (rooom AG)](https://github.com/bestog)
+- **Backend** (currently we use node.js with mongodb) -- [Daniel Böber](https://github.com/smarthomeagentur), [KaiHawaii](https://github.com/Kaipirinha), [Tim](https://github.com/pr1zm)
+- **Testing** (giving feedback on bugs, testing in real life environments) -- Valentin (Medizin, Machine Learning Modelle, Epidemiologie)
+- **Evaluation** (machine learning and data analytics) -- [Sören](https://github.com/soerili)
+- **Communications & organisation** -- Chris Walter, [Hans (rooom AG)](https://github.com/Hans-rooom) 
+- **Media** (creating communication material, presentations, videos, etc.) -- Soprathna
 - **CI/CD, Devops** (currently we use AWS EC2 and cloudfront)
 
 Project Plan (Todos): https://trello.com/b/LlLyGAF3/pandoa
@@ -31,10 +26,10 @@ Project Plan (Todos): https://trello.com/b/LlLyGAF3/pandoa
 
 The app informs you, if you had contact with an infected patient.
 
-#### Die App informiert dich, wenn du Kontakt mit einem infizierten Patient hattest.
+#### The app informs you if you have had contact with an infected patient.
 
-Dafür wird im Hintergrund die Bewegung des Nutzers aufgezeichnet und mit den Bewegungsdaten von Patienten verglichen.
-Der Abgleich funktioniert, ohne dass dein Bewegungsprofil geteilt werden muss, nur im Falle einer Infektion hast du die Möglichkeit dieses anderen Nutzern bereitzustellen.
+For this purpose, the movement of the user is recorded in the background and compared with the movement data of patients.
+The matching works without sharing your movement profile, only in case of infection you have the possibility to share it with other users.
 
 ### Data security
 
@@ -88,8 +83,8 @@ npm expo build:android -t apk
 
 ### Backend
 
-The backend is node.js (express) with a mondoDB (mongoose).
-https://github.com/wirewirewirewire/pandoa-backend
+The backend is node.js (express) with a mongoDB (mongoose).
+* https://github.com/wirewirewirewire/pandoa-backend
 
 ### Roadmap
 
@@ -101,21 +96,17 @@ The whole application is **open source**. Do whatever you want with it :)
 
 [GNU/GPL](https://github.com/wirewirewirewire/pandoa/blob/master/LICENSE)
 
-### Similar solutions from the hackathlon
+### Similar solutions from the hackathon
 
-https://github.com/beat-virus/corona_tracker
-https://github.com/mk0/infectionchain_tracking
-https://bs-sd.de/corona/
-https://github.com/rehfeldchris/cmpe272
-https://play.google.com/store/apps/details?id=cat.gencat.mobi.StopCovid19Cat
-https://play.google.com/store/apps/details?id=sg.gov.tech.bluetrace
-https://github.com/tripleblindmarket/private-kit/blob/develop/app/services/LocationService.js
+* https://github.com/beat-virus/corona_tracker
+* https://github.com/mk0/infectionchain_tracking
+* https://bs-sd.de/corona/
+* https://github.com/rehfeldchris/cmpe272
+* https://play.google.com/store/apps/details?id=cat.gencat.mobi.StopCovid19Cat
+* https://play.google.com/store/apps/details?id=sg.gov.tech.bluetrace
+* https://github.com/tripleblindmarket/private-kit/blob/develop/app/services/LocationService.js
 
 ### Credits
 
 Illustrations
 https://www.vecteezy.com/vector-art/149356-bacterias-and-mold-vector-drawings-doodle
-
-```
-
-```
