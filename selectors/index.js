@@ -1,5 +1,4 @@
-export const getCurrentStore = (state, ownProps) =>
-  state.reducer.stores.find(e => e.client_id === ownProps.route.item);
+export const getCurrentStore = (state, ownProps) => state.reducer.stores.find(e => e.client_id === ownProps.route.item);
 
 export const getAllPositions = state => state.positions;
 // state.positions.filter(point => point.data);
@@ -26,16 +25,6 @@ export const getWarning = state => {
   });
 };
 
-export const getAllFilteredWarnings = state => {
-  const filteredWarnings = state.warnings.filter(
-    e => e.matches && e.matches.length >= 1
-  );
-  return filteredWarnings;
-};
-
-export const countFilteredWarnings = state => {
-  const filteredWarnings = state.warnings.filter(
-    e => e.matches && e.matches.length >= 1
-  );
-  return filteredWarnings.length;
-};
+export const filteredWarnings = state => state.warnings.filter(e => e.matches && e.matches.length >= 1);
+export const getAllFilteredWarnings = (state) => filteredWarnings(state);
+export const countFilteredWarnings = state => filteredWarnings(state).length;
