@@ -19,6 +19,9 @@ export default function ReportIntroScreen({ navigation }) {
         <Button primary onPress={() => navigation.push("ReportStatus")}>
           <Text>Add Report</Text>
         </Button>
+        <Button primary onPress={() => navigation.push("Selfcheck")}>
+          <Text>Selfcheck</Text>
+        </Button>
       </View>
     </View>
   );
