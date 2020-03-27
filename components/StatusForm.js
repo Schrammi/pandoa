@@ -6,34 +6,25 @@ import { connect } from "react-redux";
 import { clearAll, reportCase } from "../actions";
 import { getAllPositions, getAllTracks } from "../selectors";
 import Colors from "../constants/Colors";
-import ChariteImage from "../assets/images/charite";
+import ChariteImage from "../assets/images/charite.svg";
 
-import NumericInput from 'react-native-numeric-input'
+import realm from 'realm';
 
 import {
   Button,
-  Container,
-  Header,
-  Content,
-  Form,
-  Item,
-  Input,
   Text,
     Icon,
     Switch,
-    CheckBox,
-  Label
 } from "native-base";
-import Image from "react-native-web/dist/exports/Image";
-import TextInput from "react-native-web/dist/exports/TextInput";
 
 function ReportForm({ reportCaseTrigger, positions }) {
   const { control, handleSubmit, errors } = useForm();
   const [temp, setTemp] = useState(37);
-  const onSubmit = data => {
+  const [quarantine, setQuarantine] = useState(false);
+  const [upload, setUpload] = useState(false);
+  const saveData = () => {
     Alert.alert("Data submitted");
-    //reportCaseTrigger(positions);
-     Alert.alert("Form Data", JSON.stringify(data), positions.length);
+
   }
   const updateTemp = (val) => {
     const newTemp = parseFloat(temp)+val;
@@ -44,19 +35,18 @@ function ReportForm({ reportCaseTrigger, positions }) {
 
   return (
     <View style={styles.wrapper}>
-      <Form>
 
           <Text style={{marginBottom:20}}>
             Trage hier deinen aktuellen Gesundheitsstatus ein
           </Text>
 
           <Text>Körpertemperatur</Text>
-        <CheckBox/>
+
           <View style={{flex: 1, flexDirection: 'row'}}>
             <View style={{flex: 1, height: 50}}>
-{              <Button transparent onPress={() => updateTemp(-0.1)}>
+              <Button transparent onPress={() => updateTemp(-0.1)}>
                 <Icon type="AntDesign" name='minuscircle' style={{color: '#007AFF'}} />
-              </Button>}
+              </Button>
             </View>
             <View style={{flex: 3, height: 50}} >
               <Text style={{textAlign: 'center', fontSize: 30, fontWeight: 'bold'}}>{temp} °C</Text>
@@ -73,7 +63,7 @@ function ReportForm({ reportCaseTrigger, positions }) {
               <Text >Bist du in Quarantäne?</Text>
             </View>
             <View style={{flex: 1, height: 50}}>
-              <Switch value={false} style={{ transform: [{ scaleX: 1.5 }, { scaleY: 1.5 }] }} />
+              <Switch value={quarantine} thumbColor={quarantine ? "#007AFF" : null} trackColor={{true: "#007AFFAA", false: null}} onValueChange={() => setQuarantine(!quarantine)} style={{ transform: [{ scaleX: 1.5 }, { scaleY: 1.5 }] }} />
             </View>
           </View>
 
@@ -83,13 +73,13 @@ function ReportForm({ reportCaseTrigger, positions }) {
               <Text style={{fontSize: 12}}>Lokale Speicherung auf deinem iPhone</Text>
             </View>
             <View style={{flex: 1, height: 50}}>
-              <Switch value={false} style={{ transform: [{ scaleX: 1.5 }, { scaleY: 1.5 }] }} />
+              <Switch value={upload} onValueChange={() => setUpload(!upload)} style={{ transform: [{ scaleX: 1.5 }, { scaleY: 1.5 }] }} />
             </View>
           </View>
 
           <View style={{flex: 1, flexDirection: 'row'}}>
             <View style={{flex: 5, height: 50}} >
-              <Button  style={{backgroundColor: '#007AFF', borderRadius: 15}} onPress={handleSubmit(onSubmit)}>
+              <Button  style={{backgroundColor: '#007AFF', borderRadius: 15}} onPress={saveData}>
                 <Text style={{textAlign: 'center'}}>Speichern</Text>
               </Button>
             </View>
@@ -106,8 +96,6 @@ function ReportForm({ reportCaseTrigger, positions }) {
             <ChariteImage style={styles.chariteLogo}/>
           </View>
 
-      </Form>
-
     </View>
   );
 }
@@ -120,7 +108,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     marginLeft: 50,
-    marginRight: 50,
+    marginRight: 50
   },
   hintText: {
     margin: 12,

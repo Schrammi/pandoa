@@ -3,10 +3,9 @@ import { StyleSheet, View } from "react-native";
 import { connect } from "react-redux";
 import { Body, Button, Right, List, ListItem, Text } from "native-base";
 import { setDetail } from "../../actions";
-import { getAllWarnings, getAllFilteredWarnings } from "../../selectors";
-import SoapImage from "../../assets/images/soap";
+import { getAllWarnings } from "../../selectors";
+import SoapImage from "../../assets/images/soap.svg";
 import commonColor from "../../native-base-theme/variables/commonColor";
-import contactLengthText from "../../helpers/contactLengthText";
 
 const options = {
   weekday: "short",
@@ -32,50 +31,28 @@ function WarningList({ navigation, setDetailTrigger, warnings }) {
       </View>
     );
   }
-
   return (
     <List>
-      {filteredWarnings.map((e, i) => {
-        const geocode =
-          e.position.geocode && e.position.geocode[0]
-            ? e.position.geocode[0]
-            : {};
-        return (
-          <ListItem key={i} onPress={() => setDetailTrigger(e)}>
-            <Body>
-              <Text>{e.title}</Text>
-              <Text numberOfLines={1} style={styles.date}>
-                {new Date(e.position.time).toLocaleDateString("de-DE", options)}
-              </Text>
-              <Text note style={styles.location}>
-                {geocode.name}, {geocode.postalCode} {geocode.city}
-              </Text>
-              <Text note style={styles.time}>
-                {e.matches &&
-                  e.matches.length >= 1 &&
-                  contactLengthText(e.duration)}
-              </Text>
-            </Body>
-            <Right>
-              <Text
-                style={[
-                  styles.right,
-                  {
-                    color:
-                      e.duration > 10
-                        ? commonColor.brandDanger
-                        : commonColor.brandWarning
-                  }
-                ]}
-              >
-                {e.matches &&
-                  e.matches.length >= 1 &&
-                  contactLengthText(e.duration, "short")}
-              </Text>
-            </Right>
-          </ListItem>
-        );
-      })}
+      {filteredWarnings.map((e, i) => (
+        <ListItem key={i}>
+          <Body>
+            <Text>{e.title}</Text>
+            <Text numberOfLines={2} style={styles.date}>
+              {new Date(e.position.time).toLocaleDateString("de-DE", options)}
+            </Text>
+            <Text note numberOfLines={2}>
+              {e.matches && e.matches.length >= 1
+                ? `Contact for ${Math.round(e.duration / 1000 / 60)} min`
+                : "no contact found"}
+            </Text>
+          </Body>
+          <Right>
+            <Button transparent onPress={() => setDetailTrigger(i)}>
+              <Text>Details</Text>
+            </Button>
+          </Right>
+        </ListItem>
+      ))}
     </List>
   );
 }
@@ -83,28 +60,7 @@ function WarningList({ navigation, setDetailTrigger, warnings }) {
 const styles = StyleSheet.create({
   date: {
     color: "#000",
-    marginTop: -5,
-    marginBottom: 7
-  },
-  location: {
-    color: "#8A8F94",
-    fontWeight: "300",
-    marginBottom: 0
-  },
-  time: {
-    color: "#8A8F94",
-    fontWeight: "300",
-    marginBottom: 7
-  },
-  right: {
-    width: 180,
-    color: commonColor.brandPrimary,
-    marginTop: -30,
-    fontSize: 13,
-    fontWeight: "500",
-    textAlign: "right",
-    display: "flex",
-    alignItems: "flex-end"
+    marginBottom: 12
   },
   introWrapper: {
     height: 540,

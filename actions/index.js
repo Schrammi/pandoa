@@ -21,7 +21,6 @@ export const downloadInfections = () => ({
 });
 
 export const downloadCase = data => {
-  console.log("dddddddddd", data);
   return {
     type: types.API_CALL_CASE_REQUEST,
     data
