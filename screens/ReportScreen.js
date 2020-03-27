@@ -1,7 +1,7 @@
 import * as React from "react";
 import ReportIntroScreen from "./ReportIntroScreen";
 import ReportDetailScreen from "./ReportDetailScreen";
-import ReportStatusScreen from "./ReportStatusScreen";
+import ReportCurrentStatusScreen from "./ReportCurrentStatusScreen";
 
 import { createStackNavigator } from "@react-navigation/stack";
 
@@ -16,9 +16,9 @@ export default function LinksScreen() {
         options={{ title: "Report case" }}
       />
       <Stack.Screen
-          name="ReportStatus"
-          component={ReportStatusScreen}
-          options={{ title: "Report Status" }}
+        name="ReportStatus"
+        component={ReportCurrentStatusScreen}
+        options={{ title: "Report Status" }}
       />
       <Stack.Screen
         name="ReportDetail"
