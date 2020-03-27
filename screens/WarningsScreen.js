@@ -1,28 +1,22 @@
 import React, { useState } from "react";
-import { Button, Image, Platform, StyleSheet, Text, View } from "react-native";
+import { Button, Platform, StyleSheet, Text, View } from "react-native";
 
 import { ScrollView } from "react-native-gesture-handler";
 import { connect } from "react-redux";
-import startLocationTracking from "../helpers/startLocationTracking";
+import { startLocationTracking, stopLocationTracking } from "../helpers/locationTracking";
+import { clearAll, downloadInfections, generateFakeInfections, generateWarnings } from "../actions";
 import {
-  clearAll,
-  downloadInfections,
-  generateWarnings,
-  generateFakeInfections
-} from "../actions";
-import {
-  countTracks,
+  countFilteredWarnings,
   countPositions,
+  countTracks,
   countWarnings,
   getAllPositions,
-  getAllTracks,
-  countFilteredWarnings
+  getAllTracks
 } from "../selectors";
-import stopLocationTracking from "../helpers/stopLocationTracking";
 
 function HomeScreen(props) {
   const [trackingStatus, setTrackingStatus] = useState(false);
-
+  
   const {
     clearAllTrigger,
     downloadInfectionsTrigger,
