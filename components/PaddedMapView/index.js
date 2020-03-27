@@ -5,48 +5,26 @@ import { getAllPositions } from "../../selectors";
 import { Button, Icon } from "react-native-elements";
 import { StyleSheet } from "react-native";
 
-const EDGE_PADDING = {
-  top: 30,
-  right: 30,
-  bottom: 100,
-  left: 30
-};
-
 class PaddedMapView extends Component {
-  fitToMarkers = () => {
-    if (this.props.positions.length === 0) return null;
-
-    const options = {
-      edgePadding: EDGE_PADDING,
-      animated: false
-    };
-
-    const points = this.props.positions.map(point => {
-      return {
-        longitude: point.lng,
-        latitude: point.lat
-      };
-    });
-    this.ref.fitToCoordinates(points, options);
+  
+  _getPoints = () => this.props.positions.map(point => ({ longitude: point.lng, latitude: point.lat }));
+  
+  fitToPoints = () => {
+    if (!this.props.positions || this.props.positions.length === 0) return null;
+    this.ref.fitToCoordinates(
+      this._getPoints(),
+      {
+        edgePadding: {
+          top: 30,
+          right: 30,
+          bottom: 100,
+          left: 30
+        },
+        animated: false
+      }
+    );
   };
-
-  fitToCenter = () => {
-    if (this.props.positions.length === 0) return null;
-
-    const options = {
-      edgePadding: EDGE_PADDING,
-      animated: false
-    };
-
-    const points = this.props.positions.map(point => {
-      return {
-        longitude: point.lng,
-        latitude: point.lat
-      };
-    });
-    this.ref.fitToCoordinates(points, options);
-  };
-
+  
   render() {
     return (
       <>
@@ -54,11 +32,11 @@ class PaddedMapView extends Component {
           ref={map => {
             this.ref = map;
           }}
-          onLayout={this.fitToMarkers}
+          onLayout={this.fitToPoints}
           {...this.props}
         />
         <Button
-          onPress={this.fitToCenter}
+          onPress={this.fitToPoints}
           icon={
             <Icon type="material-community" name="crosshairs-gps" size={25} />
           }
